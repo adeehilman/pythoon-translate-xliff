@@ -1048,7 +1048,12 @@ def should_skip_translation(resname, source_text):
         r'.*\bIcon Library$',
         r'.*Sektionen Ein.*Ausblenden.*',
         r'.*Ein.*Ausblenden.*Sektion.*',
+        # WPML IMPORT FIX: Skip Classic Block/Html with raw WordPress content
+        # These contain Gutenberg block markup that conflicts with individual segment translations
+        r'^Classic Block$',
+        r'^Html$',
     ]
+
     
     if resname:
         for pattern in skip_resname_patterns:
@@ -1075,6 +1080,13 @@ def should_skip_translation(resname, source_text):
     for pattern in skip_content_patterns:
         if re.match(pattern, source_text, re.IGNORECASE):
             return True
+    
+    # WPML IMPORT FIX: Skip content containing WordPress Gutenberg block markup
+    # These are raw WordPress content blocks that should not be translated as a whole
+    # Individual segments (Heading, Paragraph, etc.) are already translated separately
+    if '<!-- wp:' in source_text or '<!-- /wp:' in source_text:
+        return True
+
     
     # Skip element names only if in Name/Tag field
     element_names = [
