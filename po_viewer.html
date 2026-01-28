@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PO File Viewer</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --card-bg: #2d2d2d;
+            --accent-color: #3b82f6;
+            --border-color: #404040;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--accent-color);
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--accent-color);
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stats {
+            background-color: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .entry-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .entry-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .entry-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .entry-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .entry-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        .field-value {
+            background-color: var(--code-bg);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .empty-trans {
+            color: #fbbf24;
+        }
+
+        .status-badge {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            background-color: #404040;
+        }
+
+        .status-fuzzy {
+            background-color: #854d0e;
+            color: #fef08a;
+        }
+
+        .context {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #404040;
+            padding-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PO File Viewer</h1>
+            <div>
+                <button onclick="document.getElementById('fileInput').click()" style="padding: 0.5rem 1rem; background: var(--accent-color); border: none; border-radius: 4px; color: white; cursor: pointer;">Select File</button>
+            </div>
+        </header>
+
+        <input type="file" id="fileInput" class="hidden" accept=".po,.pot">
+
+        <div id="dropZone" class="upload-area">
+            <h3>Drag & Drop .po file here</h3>
+            <p style="color: #888">or click "Select File"</p>
+        </div>
+
+        <div id="viewer" class="hidden">
+            <div class="toolbar">
+                <input type="text" id="searchInput" placeholder="Search translation or ID..." onkeyup="filterEntries()">
+                <div class="stats">
+                    <span id="totalCount">Total: 0</span>
+                    <span id="translatedCount" style="color: #4ade80">Translated: 0</span>
+                    <span id="missingCount" style="color: #f87171">Missing: 0</span>
+                    <span id="fuzzyCount" style="color: #fbbf24">Fuzzy: 0</span>
+                </div>
+            </div>
+
+            <div id="entriesList" class="entry-grid">
+                <!-- Entries will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        let poEntries = [];
+
+        // Drag & Drop handlers
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFile(e.dataTransfer.files[0]);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFile(e.target.files[0]);
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                parsePO(e.target.result);
+                document.getElementById('dropZone').classList.add('hidden');
+                document.getElementById('viewer').classList.remove('hidden');
+            };
+            reader.readAsText(file);
+        }
+
+        function parsePO(content) {
+            poEntries = [];
+            const lines = content.split(/\r?\n/);
+            let currentEntry = { flags: [], comments: [] };
+            let state = 'none'; // none, msgctxt, msgid, msgstr
+            let multilineBuffer = '';
+
+            // Helper to parsing multiline strings "..."
+            function cleanString(str) {
+                return str.trim().replace(/^"/, '').replace(/"$/, '').replace(/\\"/g, '"').replace(/\\n/g, '\n');
+            }
+
+            function pushEntry() {
+                if (currentEntry.msgid) {
+                    poEntries.push({...currentEntry});
+                }
+                currentEntry = { flags: [], comments: [] };
+            }
+
+            for (let line of lines) {
+                line = line.trim();
+                
+                if (!line) {
+                    pushEntry();
+                    continue;
+                }
+
+                if (line.startsWith('#')) {
+                    if (line.startsWith('#,')) {
+                        const flags = line.substring(2).split(',').map(f => f.trim());
+                        currentEntry.flags.push(...flags);
+                    } else {
+                        currentEntry.comments.push(line.substring(1).trim());
+                    }
+                    continue;
+                }
+
+                if (line.startsWith('msgctxt')) {
+                    state = 'msgctxt';
+                    currentEntry.msgctxt = cleanString(line.substring(7));
+                } else if (line.startsWith('msgid')) {
+                    state = 'msgid';
+                    currentEntry.msgid = cleanString(line.substring(5));
+                } else if (line.startsWith('msgstr')) {
+                    state = 'msgstr';
+                    currentEntry.msgstr = cleanString(line.substring(6));
+                } else if (line.startsWith('"')) {
+                    const str = cleanString(line);
+                    if (state === 'msgid') currentEntry.msgid += str;
+                    if (state === 'msgstr') currentEntry.msgstr += str;
+                    if (state === 'msgctxt') currentEntry.msgctxt += str;
+                }
+            }
+            pushEntry(); // Push last entry
+            renderEntries(poEntries);
+            updateStats();
+        }
+
+        function renderEntries(entries) {
+            const container = document.getElementById('entriesList');
+            container.innerHTML = '';
+
+            entries.forEach(entry => {
+                if (!entry.msgid) return; // Skip empty/header only inputs potentially
+
+                const isFuzzy = entry.flags.includes('fuzzy');
+                const isTranslated = entry.msgstr && entry.msgstr.length > 0;
+                
+                const div = document.createElement('div');
+                div.className = 'entry-card';
+                
+                let contextHtml = entry.msgctxt ? `<div class="context">Context: ${escapeHtml(entry.msgctxt)}</div>` : '';
+                let flagsHtml = isFuzzy ? '<span class="status-badge status-fuzzy">Fuzzy</span>' : '';
+                
+                div.innerHTML = `
+                    <div class="entry-header">
+                        <div>
+                            ${flagsHtml} 
+                            <span class="status-badge">${entry.comments.length ? '# ' + entry.comments[0].substring(0,30)+'...' : ''}</span>
+                        </div>
+                    </div>
+                    ${contextHtml}
+                    <div class="entry-content">
+                        <div>
+                            <div class="field-label">Original (msgid)</div>
+                            <div class="field-value">${escapeHtml(entry.msgid)}</div>
+                        </div>
+                        <div>
+                            <div class="field-label">Translation (msgstr)</div>
+                            <div class="field-value ${!isTranslated ? 'empty-trans' : ''}">${escapeHtml(entry.msgstr || '<Missing Translation>')}</div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function updateStats() {
+            const total = poEntries.length;
+            const fuzzy = poEntries.filter(e => e.flags.includes('fuzzy')).length;
+            const missing = poEntries.filter(e => !e.msgstr).length;
+            const translated = total - missing;
+
+            document.getElementById('totalCount').textContent = `Total: ${total}`;
+            document.getElementById('translatedCount').textContent = `Translated: ${translated}`;
+            document.getElementById('missingCount').textContent = `Missing: ${missing}`;
+            document.getElementById('fuzzyCount').textContent = `Fuzzy: ${fuzzy}`;
+        }
+
+        function filterEntries() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = poEntries.filter(entry => {
+                return (entry.msgid && entry.msgid.toLowerCase().includes(term)) ||
+                       (entry.msgstr && entry.msgstr.toLowerCase().includes(term)) ||
+                       (entry.msgctxt && entry.msgctxt.toLowerCase().includes(term));
+            });
+            renderEntries(filtered);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>

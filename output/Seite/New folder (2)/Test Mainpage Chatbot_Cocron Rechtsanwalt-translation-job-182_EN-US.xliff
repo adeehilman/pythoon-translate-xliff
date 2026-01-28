@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2" xmlns:tool="https://cdn.wpml.org/xliff/custom-attributes.xsd"><file original="182-624ac1c6fbf5b4a7fe03693fd2a3e67b" source-language="de" target-language="en" tool:source-language-domain="https://ra-cocron.de" tool:target-language-domain="https://ra-cocron.de" tool:sender-id="11" tool:sender-username="alex.sirait" tool:sender-email="alex@schutze-web.com" tool:sender-display-name="Alex Sirait" tool:wpml-words-to-translate-count="67" tool:wpml-automatic-translation-costs="268" datatype="plaintext"><header><phase-group><phase phase-name="shortcodes" process-name="Shortcodes identification"><note>wp_caption,caption,gallery,playlist,audio,video,embed,wpml_language_form_field,apcm-wpcli,apcm-changelog,apcm-libraries,apcm-statistics,blockstudio-configurator,rank_math_seo_score,wpml_language_switcher,wpml_language_selector_widget,wpml_language_selector_footer,wpml-string,podcastplayer,showpodcastplayer,shy,bricks_template,rank_math_rich_snippet,rank_math_review_snippet,rank_math_html_sitemap,aioseo_html_sitemap,jet_engine,jet_engine_data,borlabs-cookie,call_to_action,newsletter,tours_shortcode,cta_button,woocommerce_thankyou,woocommerce_shop,table,custom_profile,symple_heading,row,tagcloud,sform,nano,add_eventon_list,che,era,essa,nel,gli,per,come,anima,ella,quel,show_gd_mylist_btn,su_spoiler,email,vul,wpv-view,wpv-post-field,accordion_item,citation,foogallery,user-submitted-posts,chronologie,adresse,get_unit_label,get_reference_label,woocommerce_api_manager_lost_api_key,wp-knowledgebase,testimonials_slider,rpwe,posts,nowotworu,intima-media,dostarcza,standaryzowany,jako,czarny,ekstrakt,kwas,std,dwuwodzian,stm_icon_box,ess_grid,rev_slider,linkview,dropcap,permalinklist,testimonial_slider,woocommerce_software_lost_license,text-blocks,wp_sitemap_page,wcmp_vendor,vendor_registration,efsrow,efscolumn,efsbutton,md_rev_slider,md_live_text,md_imagebox_full,flagallery,pbr_quicklinksmenu,rev_slider_vc,opalhotel_reservation_form,pbr_title_heading,pbr_testimonials,embedyt,yith_wcwl_wishlist,wcm_content_restricted,feature_box,woocommerce_en_check,wc_box,wc_row,wc_column,wc_fullwidth,wc_center,wp_social_sharing,infoboxes,testimonials,woocommerce_social_media_share_buttons,wcv_vendor_dashboard,wcv_shop_settings,wcv_orders,inplayer,useyourdrive,wp_blog_designer,us_blog,tt_address,tt_dashboard,envira-gallery,hotspotitem,woocommerce_klarna_checkout,wpml_mailto,contact-field,ux_banner,advanced_iframe,siteorigin_widget,ec_store,simpay_payment_receipt,su-mensaje,borlabs_cookie,contact_info,stm_boats_video,packages_orderdata,yith_ywraq_request_quote,woocommerce_pay,button,supsystic-tables,clean-login,pdf-embedder,insertgenerator,youzer_register,wysija_form,customer-area,customer-area-dashboard,customer-area-private-files-home,customer-area-private-files,customer-account-home,customer-area-account,customer-area-logout,bookly-form,bookly-cancellation-confirmation,stm_classic_filter,popup_trigger,mainwp_archived_lists,wcv_vendorslist,dotpay_content,formularz,cyberactive_school_courses_selection_form,cyberactive_school_session_timeout,ditty_news_ticker,donationcampaign,das-list-events,event_embed,sectiontitle,learn_press_profile,ticket-submit,tickets,aanduiding,datum,thim-icon-box,ngg_images,wpdomainchecker,visualizer,mk_page_section,rssreviews,animate_this,simple-sitemap,gravityform,stm_tech_info,fep_submission_form,ucaddon_diagonal_event_box,wcv_feedback_form,newsletters_management,wcv_pro_dashboard,tm_pb_section,wwof_product_listing,res_map,jssupportticket,socialbar,socialbar_service,front-end-pm,stm_sidebar,give_receipt,donation_history,simpay_error,tm_pb_contact_field,jwp,woocommerce_checkout,mk_custom_list,sg_popup,icon,extra_wrap,frontier-post,invierno,appbox,highlight,ci_alert,vc_mad_products,dt_list,geoip-continent,geoip-country,geoip-region,geoip-city,geoip-postalcode,geoip-latitude,geoip-longitude,geoip-location,woocommerce_notices,post-timeline,private-message,ga_optout,manage_serial_key_usage,ut_header,site_name,bfname,order_id,menu-country,menu-prefer,accordion-item,mini-icon,gvlogic,stm_gmap,contact-form,iconbox,woocommerce_my_account,super_form,wpdm-all-packages,photoblocks,et_pb_map_pin,ginger_reset_cookie,su_divider,fbl_login_button,gmw_single_location,one_full,recent_products,custom_list,endif,jours,wpuf-login,lyte,product_table,wpuf-registration,wpuf_dashboard,amazon,member-pricing-table,rozinky,add_to_cart_url,srizonfbgallery,cl-itext,icon_counter,text_block,vtftable,header_static,bookingcalendar,flexslider,anova-geoip-meta,zp_vc_slideshow_element,zp_scrollto,my_calendar_upcoming,wpv-post-url,fusion_button,su_tab,freeconsultation_technical_forum_link,vc_images_carousel,otgs_logo_url,wpv-conditional,teaser,dt_fancy_image,fusion_tagline_box,contact_us_add,content_box,tagline_box,us_iconbox,fusion_tab,fisicamente,one_half_sidebar,action-btn,invicta_contacts,pricing_price,icon_link,slideshow,vcex_milestone,secondary-demo,vh_pricing_table,category_name,blogurl,q_team,tab_nav_item</note></phase><phase phase-name="post_type" process-name="Post type"><note>post_page</note></phase></phase-group><reference><external-file href="https://ra-cocron.de/test-mainpage-chatbot/"/></reference></header><body><trans-unit resname="title" restype="string" datatype="html" id="title"><source><![CDATA[Test Mainpage Chatbot]]></source><target state="translated"><![CDATA[Test Mainpage Chatbot]]></target><tool:extradata unit="Title" type="text" group="Main Content" group_id="Main_Content-0"/></trans-unit><trans-unit resname="Paragraph" restype="string" datatype="html" id="package-string-131-6542"><source><![CDATA[Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.]]></source><target state="translated"><![CDATA[Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Jaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.]]></target><tool:extradata unit="Paragraph" type="text" group="Main Content" group_id="Main_Content-0"/></trans-unit><trans-unit resname="Html" restype="string" datatype="html" id="package-string-131-6543"><source><![CDATA[
+<!-- Mainpage Bot Script -->
+<!-- <script type='text/javascript'>
+
+    const CHATBOT_SCRIPT_LOCAL_STORAGE_KEY = 'chatbot_script';
+    const CHATBOT_EXPIRY_TIME_MS = 24 * 60 * 60 * 1000;
+
+    function getStoredScript() {
+        const stored = localStorage.getItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+        if (!stored) return null;
+
+        try {
+            const parsed = JSON.parse(stored);
+            const now = new Date().getTime();
+            if (now - parsed.timestamp < CHATBOT_EXPIRY_TIME_MS) {
+                return parsed.script;
+            } else {
+                localStorage.removeItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+                return null;
+            }
+        } catch (e) {
+            localStorage.removeItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+            return null;
+        }
+    }
+
+    function storeScript(script) {
+        const data = {
+            script,
+            timestamp: new Date().getTime()
+        };
+        localStorage.setItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY, JSON.stringify(data));
+    }
+
+    async function selectScript() {
+        const existingScript = getStoredScript();
+        if (existingScript) {
+            displayScript(existingScript);
+            return;
+        }
+
+        try {
+            const response = await fetch('https://contao.ra-cocron.de/chatbot/last-served-script');
+            const result = await response.json();
+            const lastServed = result.data.last_served_script;
+
+            const nextScript = lastServed === 'chatbot' ? 'jupus' : 'chatbot';
+          //const nextScript = 'chatbot';
+            storeScript(nextScript);
+            displayScript(nextScript);
+        } catch (error) {
+            console.error('Failed to fetch last served script:', error);
+        }
+    }
+
+    function displayScript(scriptName) {
+        if (scriptName == 'chatbot') {
+            const menu = document.querySelector('[aria-label="Menü"]');
+            if (menu) {
+                const observer = new MutationObserver(() => {
+
+                    const iframe = document.querySelector('#embedded-chatbot');
+                    if (menu.classList.contains('brx-open')) {
+                        iframe.style.zIndex = '997';
+                    } else {
+                        iframe.style.zIndex = '998';
+                    }
+                });
+
+                observer.observe(menu, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('id', 'embedded-chatbot');
+            iframe.src = 'https://contao.ra-cocron.de/chatbot-mainpage?embed=true'
+            iframe.style.position = 'fixed';
+            iframe.style.bottom = '20px';
+            iframe.style.right = '20px';
+            iframe.style.width = '315px';
+            iframe.style.height = '60px';
+            iframe.style.border = 'none';
+            iframe.style.background = 'transparent';
+            iframe.style.zIndex = '9999';
+            iframe.style.overflow = 'hidden';
+            document.body.appendChild(iframe);
+
+            let originalWidth = 0;
+            let originalHeight = 0;
+            let state = 'closed';
+
+            window.addEventListener('message', function (event) {
+                if (event.origin !== 'https://contao.ra-cocron.de') return;
+
+                const data = event.data || {};
+
+                if (data.type && data.type === 'chatbot-resize') {
+
+                    if (data.width) {
+                        iframe.style.width = data.width;
+                    }
+                    if (data.height) {
+                        iframe.style.height = data.height;
+                    }
+                } else if (data.type && data.type === 'trigger-chatbotsize') {
+
+                    iframe.contentWindow.postMessage(
+                        {
+                            type: 'iframe-resize',
+                            width: window.innerWidth,
+                        },
+                        '*'
+                    );
+
+                } else if (data.type && data.type === 'open-chatbot') {
+
+                    state = 'opened';
+                    if (window.innerWidth <= 434) {
+                        if (window.innerWidth <= 414) {
+                            iframe.style.bottom = '0';
+                            iframe.style.right = '0';
+                        } else {
+                            const right = (window.innerWidth - 400) / 2;
+                            iframe.style.bottom = '20px';
+                            iframe.style.right = right + 'px';
+                        }
+                    } else {
+                        iframe.style.bottom = '20px';
+                        iframe.style.right = '20px';
+                    }
+                } else if (data.type) {
+                    if (data.type === 'close-chatbot') {
+                        state = 'closed';
+                        iframe.style.bottom = '20px';
+                        iframe.style.right = '20px';
+                    }
+                }
+            });
+
+            updateChatbotSize();
+
+            window.addEventListener('resize', updateChatbotSize);
+
+        } else {
+            !function(j,u,p,U,s){j.JUPUS=p;j[p]||(j[p]=function(){
+            (j[p].q=j[p].q||[]).push(arguments)});
+            U=u.createElement('script');s=u.scripts[0];
+            U.src='https://app.jupus.de/channels/ingress/chatbot/embed/6a7d642b-3e0b-4016-a867-70324f78d078.js';
+            s.parentNode.insertBefore(U,s)}(window,document,'jp');
+        }
+    }
+
+    function updateChatbotSize() {
+        const iframe = document.querySelector('#embedded-chatbot');
+
+        iframe.contentWindow.postMessage(
+            {
+                type: 'iframe-resize',
+                width: window.innerWidth,
+            },
+            '*'
+        );
+        if (window.innerWidth <= 434) {
+            if (state == 'opened') {
+                if (window.innerWidth <= 414) {
+                    iframe.style.bottom = '0';
+                    iframe.style.right = '0';
+                } else {
+                    const right = (window.innerWidth - 400) / 2;
+                    iframe.style.bottom = '20px';
+                    iframe.style.right = right + 'px';
+                }
+
+            } else {
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+
+            }
+        } else {
+            iframe.style.bottom = '20px';
+            iframe.style.right = '20px';
+        }
+    }
+
+    window.addEventListener('load', function () {
+        selectScript();
+    });
+</script>-->
+]]></source><target state="translated"><![CDATA[
+<!-- Mainpage Bot Script -->
+<!-- <script type='text/javascript'>
+
+    const CHATBOT_SCRIPT_LOCAL_STORAGE_KEY = 'chatbot_script';
+    const CHATBOT_EXPIRY_TIME_MS = 24 * 60 * 60 * 1000;
+
+    function getStoredScript() {
+        const stored = localStorage.getItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+        if (!stored) return null;
+
+        try {
+            const parsed = JSON.parse(stored);
+            const now = new Date().getTime();
+            if (now - parsed.timestamp < CHATBOT_EXPIRY_TIME_MS) {
+                return parsed.script;
+            } else {
+                localStorage.removeItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+                return null;
+            }
+        } catch (e) {
+            localStorage.removeItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY);
+            return null;
+        }
+    }
+
+    function storeScript(script) {
+        const data = {
+            script,
+            timestamp: new Date().getTime()
+        };
+        localStorage.setItem(CHATBOT_SCRIPT_LOCAL_STORAGE_KEY, JSON.stringify(data));
+    }
+
+    async function selectScript() {
+        const existingScript = getStoredScript();
+        if (existingScript) {
+            displayScript(existingScript);
+            return;
+        }
+
+        try {
+            const response = await fetch('https://contao.ra-cocron.de/chatbot/last-served-script');
+            const result = await response.json();
+            const lastServed = result.data.last_served_script;
+
+            const nextScript = lastServed === 'chatbot' ? 'jupus' : 'chatbot';
+          //const nextScript = 'chatbot';
+            storeScript(nextScript);
+            displayScript(nextScript);
+        } catch (error) {
+            console.error('Failed to fetch last served script:', error);
+        }
+    }
+
+    function displayScript(scriptName) {
+        if (scriptName == 'chatbot') {
+            const menu = document.querySelector('[aria-label="Menü"]');
+            if (menu) {
+                const observer = new MutationObserver(() => {
+
+                    const iframe = document.querySelector('#embedded-chatbot');
+                    if (menu.classList.contains('brx-open')) {
+                        iframe.style.zIndex = '997';
+                    } else {
+                        iframe.style.zIndex = '998';
+                    }
+                });
+
+                observer.observe(menu, {
+                    attributes: true,
+                    attributeFilter: ['class']
+                });
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('id', 'embedded-chatbot');
+            iframe.src = 'https://contao.ra-cocron.de/chatbot-mainpage?embed=true'
+            iframe.style.position = 'fixed';
+            iframe.style.bottom = '20px';
+            iframe.style.right = '20px';
+            iframe.style.width = '315px';
+            iframe.style.height = '60px';
+            iframe.style.border = 'none';
+            iframe.style.background = 'transparent';
+            iframe.style.zIndex = '9999';
+            iframe.style.overflow = 'hidden';
+            document.body.appendChild(iframe);
+
+            let originalWidth = 0;
+            let originalHeight = 0;
+            let state = 'closed';
+
+            window.addEventListener('message', function (event) {
+                if (event.origin !== 'https://contao.ra-cocron.de') return;
+
+                const data = event.data || {};
+
+                if (data.type && data.type === 'chatbot-resize') {
+
+                    if (data.width) {
+                        iframe.style.width = data.width;
+                    }
+                    if (data.height) {
+                        iframe.style.height = data.height;
+                    }
+                } else if (data.type && data.type === 'trigger-chatbotsize') {
+
+                    iframe.contentWindow.postMessage(
+                        {
+                            type: 'iframe-resize',
+                            width: window.innerWidth,
+                        },
+                        '*'
+                    );
+
+                } else if (data.type && data.type === 'open-chatbot') {
+
+                    state = 'opened';
+                    if (window.innerWidth <= 434) {
+                        if (window.innerWidth <= 414) {
+                            iframe.style.bottom = '0';
+                            iframe.style.right = '0';
+                        } else {
+                            const right = (window.innerWidth - 400) / 2;
+                            iframe.style.bottom = '20px';
+                            iframe.style.right = right + 'px';
+                        }
+                    } else {
+                        iframe.style.bottom = '20px';
+                        iframe.style.right = '20px';
+                    }
+                } else if (data.type) {
+                    if (data.type === 'close-chatbot') {
+                        state = 'closed';
+                        iframe.style.bottom = '20px';
+                        iframe.style.right = '20px';
+                    }
+                }
+            });
+
+            updateChatbotSize();
+
+            window.addEventListener('resize', updateChatbotSize);
+
+        } else {
+            !function(j,u,p,U,s){j.JUPUS=p;j[p]||(j[p]=function(){
+            (j[p].q=j[p].q||[]).push(arguments)});
+            U=u.createElement('script');s=u.scripts[0];
+            U.src='https://app.jupus.de/channels/ingress/chatbot/embed/6a7d642b-3e0b-4016-a867-70324f78d078.js';
+            s.parentNode.insertBefore(U,s)}(window,document,'jp');
+        }
+    }
+
+    function updateChatbotSize() {
+        const iframe = document.querySelector('#embedded-chatbot');
+
+        iframe.contentWindow.postMessage(
+            {
+                type: 'iframe-resize',
+                width: window.innerWidth,
+            },
+            '*'
+        );
+        if (window.innerWidth <= 434) {
+            if (state == 'opened') {
+                if (window.innerWidth <= 414) {
+                    iframe.style.bottom = '0';
+                    iframe.style.right = '0';
+                } else {
+                    const right = (window.innerWidth - 400) / 2;
+                    iframe.style.bottom = '20px';
+                    iframe.style.right = right + 'px';
+                }
+
+            } else {
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+
+            }
+        } else {
+            iframe.style.bottom = '20px';
+            iframe.style.right = '20px';
+        }
+    }
+
+    window.addEventListener('load', function () {
+        selectScript();
+    });
+</script>-->
+]]></target><tool:extradata unit="Html" type="text" group="Main Content" group_id="Main_Content-0"/></trans-unit><trans-unit resname="Html" restype="string" datatype="html" id="package-string-131-6544"><source><![CDATA[
+<!--<script type='text/javascript'>
+         !function(j,u,p,U,s){j.JUPUS=p;j[p]||(j[p]=function(){
+         (j[p].q=j[p].q||[]).push(arguments)});
+         U=u.createElement('script');s=u.scripts[0];
+         U.src='https://app.jupus.de/channels/ingress/chatbot/embed/6a7d642b-3e0b-4016-a867-70324f78d078.js';
+         s.parentNode.insertBefore(U,s)}(window,document,'jp');
+</script>
+<script type='text/javascript'>
+// Function to send POST request with message data
+async function sendMessageToServer(message, referrer) {
+    const url = 'https://contao.ra-cocron.de/jupus/chatbot/log'; // Replace with your server URL
+
+    const data = {
+        message: message,
+        referrer: referrer,
+        // timestamp: new Date().toISOString(), // Optionally, send a timestamp
+        // timestamp: Math.floor(Date.now() / 1000)
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Referer': referrer, // Include Referer header
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Check if the request was successful
+        if (response.ok) {
+            // console.log('Message saved successfully:', message);
+        } else {
+            // console.error('Error saving message:', response.status);
+        }
+    } catch (error) {
+        // console.error('Error sending POST request:', error);
+    }
+}
+
+// Select the chat container
+const chatWindow = document.getElementById('chat-window-messages');
+
+
+
+// Start observing new messages in the chat window
+function startMessageObserver(chatWindow) {
+    // Define the MutationObserver callback
+    const messageObserverCallback = (mutationsList) => {
+        mutationsList.forEach(mutation => {
+            // Check if new messages are added to the chat
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Check if it's a user message (chat-right) or bot message (chat-left)
+                        let messageContent = '';
+                        if (node.classList.contains('chat-right')) {
+                            messageContent = node.querySelector('.chat-content').textContent.trim();
+
+                            // Only proceed if the message is not empty
+                            if (messageContent) {
+                                // const referer = document.referrer || window.location.href; // Get the referer
+                                const referrer = document.referrer; // Get the referer
+                                sendMessageToServer(messageContent, referrer); // Send the message to the server
+                            }
+                        } else if (node.classList.contains('chat-left')) {
+                            // messageContent = node.querySelector('.chat-content').textContent.trim();
+                        }
+                    }
+                });
+            }
+        });
+    };
+
+    // Set up the MutationObserver
+    const observer = new MutationObserver(messageObserverCallback);
+
+    // Configure the observer to watch for new child nodes (messages)
+    observer.observe(chatWindow, {
+        childList: true, // Watch for added or removed child nodes
+        subtree: true,   // Watch the entire subtree, not just the direct children
+    });
+}
+ 
+// Function to wait for the chatbot to load with a time limit
+function waitForChatbot(timeout = 30000) { // Default timeout is 30 seconds
+    const startTime = Date.now(); // Record the start time
+    const checkInterval = 1000; // Check every 1 second
+
+    function checkChatbot() {
+        const chatWindow = document.getElementById('chat-window-messages'); // Replace with your chatbot's message container ID
+
+        if (chatWindow) {
+            // Once the chatbot is loaded, start observing for new messages
+            startMessageObserver(chatWindow);
+        } else if (Date.now() - startTime < timeout) {
+            // If the chatbot isn't loaded yet, check again after 1 second
+            setTimeout(checkChatbot, checkInterval);
+        } else {
+            // If the timeout has been reached, stop waiting
+            console.warn('Chatbot did not load within the time limit.');
+        }
+    }
+
+    // Start the first check
+    checkChatbot();
+}
+
+// Call the function with a 30-second timeout (you can change this value)
+document.addEventListener('DOMContentLoaded', function() {
+    waitForChatbot(30000); // Timeout of 30 seconds
+});
+</script>-->
+]]></source><target state="translated"><![CDATA[
+<!--<script type='text/javascript'>
+         !function(j,u,p,U,s){j.JUPUS=p;j[p]||(j[p]=function(){
+         (j[p].q=j[p].q||[]).push(arguments)});
+         U=u.createElement('script');s=u.scripts[0];
+         U.src='https://app.jupus.de/channels/ingress/chatbot/embed/6a7d642b-3e0b-4016-a867-70324f78d078.js';
+         s.parentNode.insertBefore(U,s)}(window,document,'jp');
+</script>
+<script type='text/javascript'>
+// Function to send POST request with message data
+async function sendMessageToServer(message, referrer) {
+    const url = 'https://contao.ra-cocron.de/jupus/chatbot/log'; // Replace with your server URL
+
+    const data = {
+        message: message,
+        referrer: referrer,
+        // timestamp: new Date().toISOString(), // Optionally, send a timestamp
+        // timestamp: Math.floor(Date.now() / 1000)
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Referer': referrer, // Include Referer header
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Check if the request was successful
+        if (response.ok) {
+            // console.log('Message saved successfully:', message);
+        } else {
+            // console.error('Error saving message:', response.status);
+        }
+    } catch (error) {
+        // console.error('Error sending POST request:', error);
+    }
+}
+
+// Select the chat container
+const chatWindow = document.getElementById('chat-window-messages');
+
+
+
+// Start observing new messages in the chat window
+function startMessageObserver(chatWindow) {
+    // Define the MutationObserver callback
+    const messageObserverCallback = (mutationsList) => {
+        mutationsList.forEach(mutation => {
+            // Check if new messages are added to the chat
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        // Check if it's a user message (chat-right) or bot message (chat-left)
+                        let messageContent = '';
+                        if (node.classList.contains('chat-right')) {
+                            messageContent = node.querySelector('.chat-content').textContent.trim();
+
+                            // Only proceed if the message is not empty
+                            if (messageContent) {
+                                // const referer = document.referrer || window.location.href; // Get the referer
+                                const referrer = document.referrer; // Get the referer
+                                sendMessageToServer(messageContent, referrer); // Send the message to the server
+                            }
+                        } else if (node.classList.contains('chat-left')) {
+                            // messageContent = node.querySelector('.chat-content').textContent.trim();
+                        }
+                    }
+                });
+            }
+        });
+    };
+
+    // Set up the MutationObserver
+    const observer = new MutationObserver(messageObserverCallback);
+
+    // Configure the observer to watch for new child nodes (messages)
+    observer.observe(chatWindow, {
+        childList: true, // Watch for added or removed child nodes
+        subtree: true,   // Watch the entire subtree, not just the direct children
+    });
+}
+ 
+// Function to wait for the chatbot to load with a time limit
+function waitForChatbot(timeout = 30000) { // Default timeout is 30 seconds
+    const startTime = Date.now(); // Record the start time
+    const checkInterval = 1000; // Check every 1 second
+
+    function checkChatbot() {
+        const chatWindow = document.getElementById('chat-window-messages'); // Replace with your chatbot's message container ID
+
+        if (chatWindow) {
+            // Once the chatbot is loaded, start observing for new messages
+            startMessageObserver(chatWindow);
+        } else if (Date.now() - startTime < timeout) {
+            // If the chatbot isn't loaded yet, check again after 1 second
+            setTimeout(checkChatbot, checkInterval);
+        } else {
+            // If the timeout has been reached, stop waiting
+            console.warn('Chatbot did not load within the time limit.');
+        }
+    }
+
+    // Start the first check
+    checkChatbot();
+}
+
+// Call the function with a 30-second timeout (you can change this value)
+document.addEventListener('DOMContentLoaded', function() {
+    waitForChatbot(30000); // Timeout of 30 seconds
+});
+</script>-->
+]]></target><tool:extradata unit="Html" type="text" group="Main Content" group_id="Main_Content-0"/></trans-unit></body></file></xliff>
