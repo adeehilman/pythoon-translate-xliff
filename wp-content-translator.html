@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WP Content Translator</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: #1e293b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-selector label {
+            color: var(--text-secondary);
+        }
+
+        .lang-selector select {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .editor-panel {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .editor-header {
+            padding: 1rem;
+            background: var(--bg-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .editor-header .flag {
+            font-size: 1.5rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 600px;
+            padding: 1rem;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            background: var(--success);
+            color: white;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 WP Content Translator</h1>
+        <p class="subtitle">Translate WordPress Gutenberg blocks (cocron/cr-erfolg, headings, etc.)</p>
+
+        <div class="controls">
+            <div class="lang-selector">
+                <label for="targetLang">Target Language:</label>
+                <select id="targetLang">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="es">🇪🇸 Spanish</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="translateContent()">
+                🔄 Translate
+            </button>
+            <button class="btn btn-success" onclick="copyOutput()">
+                📋 Copy Output
+            </button>
+            <button class="btn btn-outline" onclick="clearAll()">
+                🗑️ Clear All
+            </button>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <h3><span class="flag">🇩🇪</span> Source (German)</h3>
+                </div>
+                <textarea id="sourceContent" placeholder="Paste your WordPress content here..."></textarea>
+            </div>
+
+            <div class="editor-panel">
+                <div class="editor-header">
+                    <h3><span class="flag" id="targetFlag">🇬🇧</span> <span id="targetLangName">English</span></h3>
+                </div>
+                <textarea id="outputContent" placeholder="Translated content will appear here..." readonly></textarea>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="blockCount">0</div>
+                <div class="stat-label">Blocks Found</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="headingCount">0</div>
+                <div class="stat-label">Headings</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="erfolgCount">0</div>
+                <div class="stat-label">Erfolg Blocks</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">✅ Copied to clipboard!</div>
+
+    <script>
+        // Translation dictionaries
+        const translations = {
+            en: {
+                // Headings
+                'Erbrecht': 'Inheritance Law',
+                'Kryptowährungen': 'Cryptocurrencies',
+                'Strafverfahren wegen Teilnahme am illegalen Online Glücksspiel': 'Criminal Proceedings for Participation in Illegal Online Gambling',
+                'Weitere Erfolge': 'Further Successes',
+                'Online Casino': 'Online Casino',
+                
+                // Success facts
+                'Gegner': 'Opposing Side',
+                'Mandant': 'Client',
+                'Gegenseite': 'Opposing Side',
+                'Prozesskostenfinanzierer': 'Litigation Funder',
+                
+                // Duration
+                'ein Monat': 'one month',
+                'zwei Monate': 'two months',
+                'drei Monate': 'three months',
+                'vier Monate': 'four months',
+                'fünf Monate': 'five months',
+                'sechs Monate': 'six months',
+                'sieben Monate': 'seven months',
+                'acht Monate': 'eight months',
+                'neun Monate': 'nine months',
+                'zehn Monate': 'ten months',
+                'elf Monate': 'eleven months',
+                'zwölf Monate': 'twelve months',
+                
+                // Courts
+                'Außergerichtlicher Vergleich': 'Out-of-court settlement',
+                'Außergerichtliche Einigung': 'Out-of-court settlement',
+                'Freispruch': 'Acquittal',
+                'Einstellung des Verfahrens gemäß § 170 II StPO': 'Dismissal of proceedings pursuant to Section 170 II of the Code of Criminal Procedure',
+                'Vergleich - Gegner trägt Kosten': 'Settlement - Opponent Bears Costs',
+            },
+            es: {
+                // Headings
+                'Erbrecht': 'Derecho de Sucesiones',
+                'Kryptowährungen': 'Criptomonedas',
+                'Strafverfahren wegen Teilnahme am illegalen Online Glücksspiel': 'Procedimientos Penales por Participación en Juegos de Azar en Línea Ilegales',
+                'Weitere Erfolge': 'Otros Éxitos',
+                'Online Casino': 'Casino en Línea',
+                
+                // Success facts
+                'Gegner': 'Parte Contraria',
+                'Mandant': 'Cliente',
+                'Gegenseite': 'Parte Contraria',
+                'Prozesskostenfinanzierer': 'Financiador de Litigios',
+                'Opposing Side': 'Parte Contraria',
+                'Client': 'Cliente',
+                'Litigation Funder': 'Financiador de Litigios',
+                
+                // Duration (German)
+                'ein Monat': 'un mes',
+                'zwei Monate': 'dos meses',
+                'drei Monate': 'tres meses',
+                'vier Monate': 'cuatro meses',
+                'fünf Monate': 'cinco meses',
+                'sechs Monate': 'seis meses',
+                'sieben Monate': 'siete meses',
+                'acht Monate': 'ocho meses',
+                'neun Monate': 'nueve meses',
+                'zehn Monate': 'diez meses',
+                'elf Monate': 'once meses',
+                'zwölf Monate': 'doce meses',
+                
+                // Duration (English to Spanish)
+                'one month': 'un mes',
+                'two months': 'dos meses',
+                'three months': 'tres meses',
+                'four months': 'cuatro meses',
+                'five months': 'cinco meses',
+                'six months': 'seis meses',
+                'seven months': 'siete meses',
+                'eight months': 'ocho meses',
+                'nine months': 'nueve meses',
+                'ten months': 'diez meses',
+                'eleven months': 'once meses',
+                'twelve months': 'doce meses',
+                'Six Months': 'Seis Meses',
+                'Two Months': 'Dos Meses',
+                
+                // Courts
+                'Außergerichtlicher Vergleich': 'Acuerdo extrajudicial',
+                'Außergerichtliche Einigung': 'Acuerdo extrajudicial',
+                'Out-of-court settlement': 'Acuerdo extrajudicial',
+                'Freispruch': 'Absolución',
+                'Acquittal': 'Absolución',
+                'acquittal': 'absolución',
+                'Einstellung des Verfahrens gemäß § 170 II StPO': 'Sobreseimiento del procedimiento conforme al artículo 170 II del Código de Procedimiento Penal',
+                'Dismissal of proceedings pursuant to Section 170 II of the Code of Criminal Procedure': 'Sobreseimiento del procedimiento conforme al artículo 170 II del Código de Procedimiento Penal',
+                'Vergleich - Gegner trägt Kosten': 'Acuerdo - La Parte Contraria Asume los Costes',
+                'Settlement - Opponent Bears Costs': 'Acuerdo - La Parte Contraria Asume los Costes',
+            }
+        };
+
+        // Update target language display
+        document.getElementById('targetLang').addEventListener('change', function() {
+            const lang = this.value;
+            document.getElementById('targetFlag').textContent = lang === 'en' ? '🇬🇧' : '🇪🇸';
+            document.getElementById('targetLangName').textContent = lang === 'en' ? 'English' : 'Spanish';
+        });
+
+        function translateContent() {
+            const source = document.getElementById('sourceContent').value;
+            const lang = document.getElementById('targetLang').value;
+            const dict = translations[lang];
+            
+            if (!source.trim()) {
+                alert('Please paste some content first!');
+                return;
+            }
+
+            let output = source;
+            let blockCount = 0;
+            let headingCount = 0;
+            let erfolgCount = 0;
+
+            // Count blocks
+            headingCount = (source.match(/<!-- wp:heading -->/g) || []).length;
+            erfolgCount = (source.match(/<!-- wp:cocron\/cr-erfolg/g) || []).length;
+            blockCount = headingCount + erfolgCount;
+
+            // Translate headings
+            output = output.replace(/<h2 class="wp-block-heading">([^<]+)<\/h2>/g, (match, text) => {
+                const trimmed = text.trim();
+                const translated = dict[trimmed] || trimmed;
+                return `<h2 class="wp-block-heading">${translated}</h2>`;
+            });
+
+            // Translate cocron/cr-erfolg blocks
+            output = output.replace(/<!-- wp:cocron\/cr-erfolg \{([^}]+)\} \/-->/g, (match, jsonStr) => {
+                try {
+                    // Parse the JSON
+                    let parsed = JSON.parse('{' + jsonStr + '}');
+                    let attrs = parsed.blockstudio.attributes;
+                    
+                    // Translate successFact2
+                    if (attrs.successFact2 && dict[attrs.successFact2]) {
+                        attrs.successFact2 = dict[attrs.successFact2];
+                    }
+                    
+                    // Translate successFact3 (duration)
+                    if (attrs.successFact3) {
+                        const lowerFact3 = attrs.successFact3.toLowerCase();
+                        for (const [key, val] of Object.entries(dict)) {
+                            if (key.toLowerCase() === lowerFact3) {
+                                attrs.successFact3 = val;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // Translate successCourt
+                    if (attrs.successCourt) {
+                        let court = attrs.successCourt;
+                        // Decode unicode
+                        court = court.replace(/\\u003c/g, '<').replace(/\\u003e/g, '>');
+                        // Extract text from <p> tag
+                        const courtMatch = court.match(/<p>([^<]+)<\/p>/);
+                        if (courtMatch) {
+                            const courtText = courtMatch[1].trim();
+                            if (dict[courtText]) {
+                                court = court.replace(courtText, dict[courtText]);
+                            }
+                        }
+                        // Re-encode
+                        court = court.replace(/</g, '\\u003c').replace(/>/g, '\\u003e');
+                        attrs.successCourt = court;
+                    }
+                    
+                    // Rebuild JSON
+                    const newJson = JSON.stringify(parsed).slice(1, -1); // Remove outer braces
+                    return `<!-- wp:cocron/cr-erfolg {${newJson}} /-->`;
+                } catch (e) {
+                    console.error('Parse error:', e);
+                    return match; // Return original if error
+                }
+            });
+
+            document.getElementById('outputContent').value = output;
+            document.getElementById('blockCount').textContent = blockCount;
+            document.getElementById('headingCount').textContent = headingCount;
+            document.getElementById('erfolgCount').textContent = erfolgCount;
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('outputContent');
+            if (!output.value.trim()) {
+                alert('Nothing to copy!');
+                return;
+            }
+            navigator.clipboard.writeText(output.value);
+            showToast();
+        }
+
+        function clearAll() {
+            document.getElementById('sourceContent').value = '';
+            document.getElementById('outputContent').value = '';
+            document.getElementById('blockCount').textContent = '0';
+            document.getElementById('headingCount').textContent = '0';
+            document.getElementById('erfolgCount').textContent = '0';
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+</html>

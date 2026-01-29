@@ -112,6 +112,15 @@ LEGAL_GLOSSARY = {
     'Cookie-einstellungen': 'Cookie Settings',
 }
 
+# Spanish-specific legal translations (DE -> ES)
+SPANISH_LEGAL_GLOSSARY = {
+    'impressum': 'Aviso Legal',
+    'datenschutzerklärung': 'Política de Privacidad',
+    'cookie-einstellungen': 'Configuración de Cookies',
+    'rechtliches': 'Legal',
+    'kontaktinformationen': 'Información de Contacto',
+}
+
 # Terms that should NEVER be translated
 DO_NOT_TRANSLATE = {
     'ZVG', 'BGB', 'StGB', 'GmbH', 'AG', 'UG', 'WPML', 'JetEngine',
@@ -1149,6 +1158,206 @@ def get_target_language_from_xliff(content):
     return None
 
 
+def fix_html_attributes(text):
+    """
+    Fix HTML attributes that were incorrectly capitalized by translation API.
+    Example: <a Href="..."> -> <a href="...">
+    """
+    if not text:
+        return text
+    
+    # HTML attributes that must be lowercase
+    html_attrs = ['href', 'src', 'alt', 'title', 'class', 'id', 'style', 
+                  'type', 'name', 'value', 'action', 'method', 'target',
+                  'async', 'defer', 'rel', 'data-[a-z-]+']
+    
+    for attr in html_attrs:
+        # Fix patterns like Href= or HREF= or HRef=
+        pattern = r'<([a-z][a-z0-9]*)\s+([^>]*)\b(' + attr + r')='
+        text = re.sub(pattern, 
+                      lambda m: f'<{m.group(1)} {m.group(2)}{m.group(3).lower()}=',
+                      text, flags=re.IGNORECASE)
+    
+    # Fix standalone attribute capitalization after HTML tag
+    text = re.sub(r'<([a-z]+)\s+([A-Z][a-z]+)=', 
+                  lambda m: f'<{m.group(1)} {m.group(2).lower()}=', text)
+    
+    return text
+
+
+def fix_protocol_schemes(text):
+    """
+    Fix protocol schemes that were incorrectly capitalized.
+    Example: Mailto: -> mailto:, Tel: -> tel:
+    """
+    if not text:
+        return text
+    
+    # Protocol schemes that must be lowercase
+    schemes = ['mailto', 'tel', 'http', 'https', 'ftp', 'file', 'javascript']
+    
+    for scheme in schemes:
+        # Fix capitalized schemes like Mailto: or MAILTO:
+        pattern = r'\b' + scheme + r':'
+        text = re.sub(pattern, f'{scheme}:', text, flags=re.IGNORECASE)
+    
+    return text
+
+
+def fix_city_capitalization(text, target_lang=None):
+    """
+    Ensure city names are properly capitalized.
+    Example: múnich -> Múnich, berlín -> Berlín
+    """
+    if not text:
+        return text
+    
+    # City names that should always be capitalized (language-specific)
+    city_caps = {
+        'ES': {
+            'múnich': 'Múnich',
+            'berlín': 'Berlín',
+            'colonia': 'Colonia',
+            'viena': 'Viena',
+            'ginebra': 'Ginebra',
+            'praga': 'Praga',
+            'varsovia': 'Varsovia',
+            'milán': 'Milán',
+            'venecia': 'Venecia',
+            'florencia': 'Florencia',
+            'roma': 'Roma',
+            'nápoles': 'Nápoles',
+            'bruselas': 'Bruselas',
+            'copenhague': 'Copenhague',
+            'moscú': 'Moscú',
+            'atenas': 'Atenas',
+        },
+        'EN': {
+            'munich': 'Munich',
+            'München': 'Munich',
+            'muenchen': 'Munich',
+            'berlin': 'Berlin',
+            'berlín': 'Berlin',
+            'cologne': 'Cologne',
+            'köln': 'Cologne',
+            'koeln': 'Cologne',
+            'vienna': 'Vienna',
+            'wien': 'Vienna',
+            'geneva': 'Geneva',
+            'genf': 'Geneva',
+            'prague': 'Prague',
+            'prag': 'Prague',
+            'warsaw': 'Warsaw',
+            'warschau': 'Warsaw',
+            'milan': 'Milan',
+            'mailand': 'Milan',
+            'venice': 'Venice',
+            'venedig': 'Venice',
+            'florence': 'Florence',
+            'florenz': 'Florence',
+            'rome': 'Rome',
+            'rom': 'Rome',
+            'naples': 'Naples',
+            'neapel': 'Naples',
+            'brussels': 'Brussels',
+            'brüssel': 'Brussels',
+            'bruessel': 'Brussels',
+            'copenhagen': 'Copenhagen',
+            'kopenhagen': 'Copenhagen',
+            'moscow': 'Moscow',
+            'moskau': 'Moscow',
+            'athens': 'Athens',
+            'athen': 'Athens',
+            'frankfurt': 'Frankfurt',
+            'hamburg': 'Hamburg',
+            'düsseldorf': 'Düsseldorf',
+            'duesseldorf': 'Düsseldorf',
+            'stuttgart': 'Stuttgart',
+            'nürnberg': 'Nuremberg',
+            'nuernberg': 'Nuremberg',
+            'nuremberg': 'Nuremberg',
+        }
+    }
+    
+    lang_key = None
+    if target_lang:
+        lang_key = target_lang.upper().split('-')[0]
+    
+    if lang_key and lang_key in city_caps:
+        for lowercase, proper in city_caps[lang_key].items():
+            # Match standalone city name or at start of text
+            pattern = r'\b' + re.escape(lowercase) + r'\b'
+            text = re.sub(pattern, proper, text, flags=re.IGNORECASE)
+    
+    return text
+
+
+def apply_spanish_translations(text):
+    """
+    Fix specific German-to-Spanish translations that APIs get wrong.
+    """
+    if not text:
+        return text
+    
+    # Specific fixes for Spanish
+    fixes = {
+        'Imprimir': 'Aviso Legal',  # Impressum should NOT be "Print"
+        'Cookie-einstellungen': 'Configuración de Cookies',
+        'Cookie-Einstellungen': 'Configuración de Cookies',
+        'Información Del Contacto': 'Información de Contacto',
+    }
+    
+    for wrong, correct in fixes.items():
+        if wrong in text:
+            text = text.replace(wrong, correct)
+    
+    return text
+
+
+def apply_english_translations(text):
+    """
+    Fix specific German-to-English translations that APIs get wrong.
+    """
+    if not text:
+        return text
+    
+    # Specific fixes for English
+    fixes = {
+        'Cookie-einstellungen': 'Cookie Settings',
+        'Cookie-Einstellungen': 'Cookie Settings',
+        'Einstellungen': 'Settings',
+        'Kanzlei': 'Law Firm',
+        'kanzlei': 'Law Firm',
+        'Erbrecht': 'Inheritance Law',
+        'erbrecht': 'Inheritance Law',
+        'Rechtsanwalt': 'Lawyer',
+        'rechtsanwalt': 'Lawyer',
+        'Rechtsanwälte': 'Lawyers',
+        'rechtsanwälte': 'Lawyers',
+        'Fachanwalt': 'Specialist Lawyer',
+        'fachanwalt': 'Specialist Lawyer',
+        'Fachanwälte': 'Specialist Lawyers',
+        'fachanwälte': 'Specialist Lawyers',
+        'Notar': 'Notary',
+        'notar': 'Notary',
+        'Richter': 'Judge',
+        'richter': 'Judge',
+        'Impressum': 'Legal Notice',
+        'impressum': 'Legal Notice',
+        'Datenschutz': 'Privacy Policy',
+        'datenschutz': 'Privacy Policy',
+        'Datenschutzerklärung': 'Privacy Policy',
+        'datenschutzerklärung': 'Privacy Policy',
+    }
+    
+    for german, english in fixes.items():
+        # Use word boundary to match whole words
+        pattern = r'\b' + re.escape(german) + r'\b'
+        text = re.sub(pattern, english, text)
+    
+    return text
+
+
 def apply_post_translation_rules(text, source_text, is_cr_header_file=False, should_restore=False, target_lang=None):
     """
     Apply all post-translation rules:
@@ -1157,6 +1366,8 @@ def apply_post_translation_rules(text, source_text, is_cr_header_file=False, sho
     - Legal glossary
     - City/Country/State name translation (per target language EYD)
     - Specific text replacements
+    - HTML attribute fixes
+    - Protocol scheme fixes
     """
     if not text:
         return text
@@ -1164,6 +1375,12 @@ def apply_post_translation_rules(text, source_text, is_cr_header_file=False, sho
     # Don't modify if should_restore (emails, phones, variables)
     if should_restore:
         return text
+    
+    # CRITICAL: Fix HTML attributes BEFORE any other processing
+    text = fix_html_attributes(text)
+    
+    # Fix protocol schemes (mailto:, tel:, etc.)
+    text = fix_protocol_schemes(text)
     
     # Decode HTML entities
     text = html.unescape(text)
@@ -1195,6 +1412,17 @@ def apply_post_translation_rules(text, source_text, is_cr_header_file=False, sho
             pattern = r'\b' + re.escape(german_name) + r'\b'
             if re.search(pattern, text, re.IGNORECASE):
                 text = re.sub(pattern, translated_name, text, flags=re.IGNORECASE)
+    
+    # Fix city name capitalization
+    text = fix_city_capitalization(text, target_lang)
+    
+    # Apply language-specific translation fixes
+    if target_lang:
+        lang_upper = target_lang.upper()
+        if lang_upper.startswith('ES'):
+            text = apply_spanish_translations(text)
+        elif lang_upper.startswith('EN'):
+            text = apply_english_translations(text)
     
     # Title case matching: if source was title case, apply to translation
     if source_text and is_title_case(source_text):
